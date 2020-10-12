@@ -1,0 +1,23 @@
+
+
+#include <iostream>
+#include "entity.h"
+#include "player.h"
+
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+        std::cout << "Server started..." << std::endl;
+
+        Player player;
+        std::cout << player.health << std::endl;
+        std::cout << player.name << " " << player.username << std::endl;
+
+        Player *player2 = new Player();
+        player2->username = "Tom";
+        std::cout << player2->health << std::endl;
+        std::cout << player2->name << std::endl;
+
+        return 0;
+}

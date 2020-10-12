@@ -1,0 +1,19 @@
+name: The Nexus
+id: 1
+size: 512
+seed: 487
+gamemode: adventure
+difficulty: normal
+pvp: false
+message: Welcome to the Nexus.
+view-distance: 10
+spawn-npcs: false
+spawn-animals: true
+spawn-monsters: false
+hardcore: true
+weather: clear
+time: 061530
+day: 32
+season: fall
+day-length: 30
+tick-distance: 24

@@ -1,0 +1,47 @@
+nexus.yml
+
+level-name: nexus
+level-id: 1
+level-size: 10
+gamemode: adventure
+max-players: 100
+difficulty: normal
+pvp: false
+motd: Welcome to the Nexus.
+view-distance: 10
+spawn-npcs: true
+spawn-animals: true
+hardcore: true
+weather: clear
+time: 061530
+day: 32
+temperature: 72
+humidity: 40
+season: fall
+biome: grasslands
+
+nexus.dat
+
+tiles
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+
+objects
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0

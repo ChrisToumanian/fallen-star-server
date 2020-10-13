@@ -5,6 +5,7 @@
 #include <ctime>
 #include "server.h"
 #include "reader.h"
+#include "player.h"
 
 int port = 25566;
 int map = 0;
@@ -13,6 +14,7 @@ time_t time_raw;
 struct tm * timeinfo;
 char time_buffer[80];
 Server* server;
+std::vector<Player*> players;
 std::string server_name = "USWest";
 std::string game_name = "Fallen Star 1.0";
 std::string motd = "Construction Event";
@@ -24,6 +26,7 @@ void stop();
 void log(std::string name, std::string message);
 std::string receive(Client* client, std::string message);
 std::string command(Client* client, std::string message);
+Player* get_player(int server_id);
 
 int main(int argc, char *argv[])
 {
@@ -95,6 +98,8 @@ std::string command(Client* client, std::string message)
 	}
 	else // Client message
 	{
+        Player* player = get_player(client->id);
+
         // Break into vector
         std::vector<std::string> words = Reader::split(message, " ");
         std::string cmd = words[0];
@@ -106,24 +111,27 @@ std::string command(Client* client, std::string message)
         }
         else if (cmd == "/connected")
         {
-            server->broadcast("[" + client->nickname + "] joined the game.");
-            log(client->nickname, "connected");
+            Player* player = new Player();
+            player->server_id = client->id;
+            server->broadcast("[" + player->username + "] joined the game.");
+            log(player->username, "connected");
+            players.push_back(player);
         }
         else if (cmd == "/disconnected")
         {
-            server->broadcast("[" + client->nickname + "] logged out.");
-            log(client->nickname, "disconnected");
+            server->broadcast("[" + player->username + "] logged out.");
+            log(player->username, "disconnected");
         }
         else if (cmd == "/disconnect" || cmd == "/quit" || cmd == "/exit") // disconnect
         {
             server->disconnect(client->id);
-            log(client->nickname, "connected");
+            log(player->username, "disconnected");
         }
         else if (cmd == "/name") // change username
         {
-            client->nickname = words[1];
-            server->broadcast("[" + client->nickname + "] changed name to " + words[1]);
-            log(client->nickname, "changed name to " + words[1]);
+            player->username = words[1];
+            server->broadcast("[" + player->username + "] changed name to " + words[1]);
+            log(player->username, "changed name to " + words[1]);
         }
         else if (cmd == "/teleport" || cmd == "/tp") // teleport to another player
         {
@@ -132,33 +140,43 @@ std::string command(Client* client, std::string message)
         else if (cmd == "/emote" || cmd == "/me") // emote
         {
             std::string msg = Reader::join(words, 2);
-            server->broadcast(client->nickname + " " + msg);
-            log(client->nickname, "emotes " + msg);
+            server->broadcast(player->username + " " + msg);
+            log(player->username, "emotes " + msg);
         }
         else if (cmd == "/whisper") // whisper
         {
             std::string msg = Reader::join(words, 2);
-            server->send_to(words[1], client->nickname + " whispers " + msg);
+            server->send_to(words[1], player->username + " whispers " + msg);
         }
         else if (cmd == "/yell") // yell
         {
             std::string msg = Reader::join(words, 1);
-            server->broadcast("[" + client->nickname + "] yells " + msg);
-            log(client->nickname, "yells " + msg);
+            server->broadcast("[" + player->username + "] yells " + msg);
+            log(player->username, "yells " + msg);
         }
         else if (cmd == "/say") // say
         {
             std::string msg = Reader::join(words, 1);
-            server->broadcast("[" + client->nickname + "] " + msg);
-            log(client->nickname, msg);
+            server->broadcast("[" + player->username + "] " + msg);
+            log(player->username, msg);
         }
         else // default to say
         {
             std::string msg = Reader::join(words);
-            server->broadcast("[" + client->nickname + "] " + msg);
-            log(client->nickname, msg);
+            server->broadcast("[" + player->username + "] " + msg);
+            log(player->username, msg);
         }
 	}
 
     return "";
+}
+
+Player* get_player(int server_id)
+{
+    for (auto& player : players)
+    {
+        if (player->server_id == server_id)
+            return player;
+    }
+    return NULL;
 }

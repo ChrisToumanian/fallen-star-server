@@ -9,7 +9,10 @@ class Player : public Entity
 public:
 	Player();
 
-	// User
+	int id = 0;
+	int server_id = 0;
+	int map = 1;
+	bool op = false;
 	std::string username = "player";
 
 	void quit();

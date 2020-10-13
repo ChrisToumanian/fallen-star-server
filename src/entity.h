@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #include <string>
+#include "transform.h"
 
 class Entity
 {
@@ -12,16 +13,11 @@ public:
 	std::string name = "entity";
 	unsigned char color = 15;
 
-	// Transform
-	float posX = 0;
-	float posY = 0;
-	int rotation = 0;
-
 	// Stats
+	Transform transform;
 	int health = 100;
 
 	void update();
-	void move(float x, float y);
 	void changeHealth(int amount);
 	void die();
 };

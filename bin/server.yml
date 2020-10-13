@@ -1,6 +1,5 @@
-name: Massive Damage
-address: 127.0.0.1
-port: 25570
+server-name: US West
+port: 25566
 map: 1
 max-players: 100
-motd: Welcome to Massive Damage Servers
+motd: "Events: Construction!"

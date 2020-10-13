@@ -115,7 +115,7 @@ void Server::loop()
             client.id = next_client_id;
             client.socket = new_socket;
             client.address = inet_ntoa(address.sin_addr);
-            client.nickname = "Client #" + std::to_string(client.id);
+            client.nickname = "client#" + std::to_string(client.id);
             next_client_id++;
 
             // Add client to list of clients
@@ -154,7 +154,7 @@ void Server::loop()
                         std::string response = callback(&client, buffer);
 
                         // Send response to client
-                        if (response != "")
+                        if (response.length() > 2)
                         {
 						    send(sd, (response + "\r\n").c_str(), response.length() + 2, 0);
                         }

@@ -34,15 +34,15 @@ public:
 	int port;
 	int max_clients;
 	std::vector<Client> clients;
-    	std::string welcome_message;
+	std::string welcome_message;
 	std::string (*callback)(Client*, std::string);
 
 	void start();
 	void stop();
 	void loop();
 	void broadcast(std::string message);
-    	void send_to(std::string client_nickname, std::string message);
-    	void disconnect(int client_id);
+	void send_to(std::string client_nickname, std::string message);
+	void disconnect(int client_id);
 };
 
 #endif

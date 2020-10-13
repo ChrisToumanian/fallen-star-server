@@ -1,3 +1,5 @@
 #!/bin/bash
 make
-./bin/server
+cd bin
+./server
+#gdb ./bin/server

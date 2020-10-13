@@ -1,23 +1,7 @@
+debug with gdb, file ~/Projects/fallen-star/bin/server, run
 
+[12:04:17] [Pandazoic] hi 
 
-#include <iostream>
-#include "entity.h"
-#include "player.h"
-
-using namespace std;
-
-int main(int argc, char *argv[])
-{
-        std::cout << "Server started..." << std::endl;
-
-        Player player;
-        std::cout << player.health << std::endl;
-        std::cout << player.name << " " << player.username << std::endl;
-
-        Player *player2 = new Player();
-        player2->username = "Tom";
-        std::cout << player2->health << std::endl;
-        std::cout << player2->name << std::endl;
-
-        return 0;
-}
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7f14738 in std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+    () from /usr/lib/x86_64-linux-gnu/libstdc++.so.6

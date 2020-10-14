@@ -8,12 +8,12 @@ void Entity::update()
 {
 }
 
-void Entity::changeHealth(int amount)
+void Entity::changeHP(int amount)
 {
-    health += amount;
-    if (health < 1)
+    hp += amount;
+    if (hp < 1)
     {
-        health = 0;
+        hp = 0;
         die();
     }
 }

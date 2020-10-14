@@ -10,7 +10,6 @@ class Player : public Entity
 public:
 	Player();
 
-	int id = 0;
 	int server_id = 0;
 	bool op = false;
 	std::string username = "player";

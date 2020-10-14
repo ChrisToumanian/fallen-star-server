@@ -27,8 +27,8 @@ public:
     bool spawn_monsters = false;
     bool spawn_animals = false;
 
-    static void load_maps(std::vector<Map*> maps);
-    static Map* get_map(int id, std::vector<Map*> maps);
+    static void load_maps(std::vector<Map*>* maps);
+    static Map* get_map(int id, std::vector<Map*>* maps);
 };
 
 #endif

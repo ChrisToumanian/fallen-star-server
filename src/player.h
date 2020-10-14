@@ -3,6 +3,7 @@
 
 #include <string>
 #include "entity.h"
+#include "map.h"
 
 class Player : public Entity
 {
@@ -11,9 +12,9 @@ public:
 
 	int id = 0;
 	int server_id = 0;
-	int map = 1;
 	bool op = false;
 	std::string username = "player";
+    Map* map;
 
 	void quit();
 };

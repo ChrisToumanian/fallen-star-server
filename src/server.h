@@ -41,7 +41,7 @@ public:
 	void stop();
 	void loop();
 	void broadcast(std::string message);
-	void send_to(std::string client_nickname, std::string message);
+	void send_to(int client_id, std::string message);
 	void disconnect(int client_id);
 };
 

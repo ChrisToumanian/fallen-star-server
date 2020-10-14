@@ -119,7 +119,6 @@ void Server::loop()
             next_client_id++;
 
             // Add client to list of clients
-            callback(&client, "/connected");
             clients.push_back(client);
 
             // Send new client greeting message
@@ -127,6 +126,9 @@ void Server::loop()
             {
                 perror("send");
             }
+
+            // Callback connection
+            callback(&client, "/connected");
         }
 
         // Else it's an IO operation on another socket
@@ -179,11 +181,11 @@ void Server::broadcast(std::string message)
     }
 }
 
-void Server::send_to(std::string client_nickname, std::string message)
+void Server::send_to(int client_id, std::string message)
 {
     for (auto& client : clients)
     {
-        if (client.nickname == client_nickname)
+        if (client.id == client_id)
         {
             send(client.socket, (message + "\r\n").c_str(), message.length() + 2, 0);
         }

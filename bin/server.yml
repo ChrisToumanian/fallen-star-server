@@ -2,4 +2,4 @@ server-name: US West
 port: 25566
 map: 1
 max-players: 100
-motd: "Events: Construction!"
+motd: Construction Event!

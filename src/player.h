@@ -15,7 +15,12 @@ public:
 	std::string username = "player";
     Map* map;
 
-	void quit();
+	int xp = 0;
+	int reputation = 0;
+	int currency = 0;
+
+	void give_xp(int amount);
+	int xp_to_level();
 };
 
 #endif

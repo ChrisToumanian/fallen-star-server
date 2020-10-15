@@ -8,7 +8,11 @@ void Entity::update()
 {
 }
 
-void Entity::changeHP(int amount)
+void Entity::use_slot(int slot)
+{
+}
+
+void Entity::change_hp(int amount)
 {
     hp += amount;
     if (hp < 1)

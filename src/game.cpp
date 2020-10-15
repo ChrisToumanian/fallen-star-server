@@ -142,6 +142,11 @@ std::string Game::command(int server_id, std::string message)
         server->broadcast("[" + player->username + "] " + msg);
         log(player->username, msg);
     }
+	else if (cmd[0] == "/stats")
+	{
+		std::string stats = "Lvl " + std::to_string(player->level) + " " + player->race + " " + player->game_class + "\r\n";
+		return stats;
+	}
     else
     {
         return "Unknown command. Type \"/help\" for help.";

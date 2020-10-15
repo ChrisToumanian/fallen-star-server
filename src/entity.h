@@ -16,40 +16,44 @@ public:
 	unsigned char color = 1;
 	std::string name = "entity";
 	std::string race = "human";
-	std::string game_class = "warrior";
-	std::string profession = "blacksmith";
+	std::string game_class = "";
+	std::string profession = "";
+	std::string backstory = "";
+	std::string motto = "";
 	Transform transform;
 	
 	Inventory inventory;
-	Item* primary_slot;
-	Item* secondary_slot;
-	Item* head_slot;
-	Item* shoulders_slot;
-	Item* chest_slot;
-	Item* hands_slot;
-	Item* legs_slot;
+	Item *slots[12];
+	// Slot #00: left-click
+	// Slot #01: right-click
+	// Slot #02: key 1
+	// Slot #03: key 2
+	// Slot #04: key 3
+	// Slot #05: key 4
+	// Slot #06: head
+	// Slot #07: chest
+	// Slot #08: legs
+	// Slot #09: feet
+	// Slot #10: hands
+	// Slot #11: ring
 
-	int xp = 0;
-	int reputation = 0;
-	int hp = 100;
-	int max_hp = 100;
-	int mp = 20;
-	int max_mp = 20;
-	int att = 70;
-	int max_att = 70;
-	int def = 100;
-	int max_def = 100;
-	int spd = 40;
-	int max_spd = 40;
-	int dxt = 20;
-	int max_dxt = 20;
-	int vit = 50;
-	int max_vit = 50;
-	int wis = 50;
-	int max_wis = 50;
+	int level = 1;			// level
+	int hp = 100;			// hit points
+	
+	// physical attributes
+	int strength = 0;		// physical attack power
+	int vitality = 0;		// hp regeneration
+	int dexterity = 0;		// acrobatics, agility, stealth
+	int speed = 0;			// attack speed, sprint
+	
+	// mental attributes
+	int intellect = 0;		// magic pool, magic regeneration, knowledge
+	int wisdom = 0;			// magic power, perception 
+	int charm = 0;			// persuasiveness, intimidation, bargaining, taming
 
 	void update();
-	void changeHP(int amount);
+	void use_slot(int slot);
+	void change_hp(int amount);
 	void die();
 };
 

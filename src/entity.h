@@ -37,14 +37,15 @@ public:
 	// Slot #10: hands
 	// Slot #11: ring
 
+	// stats
 	int level = 1;			// level
-	int hp = 100;			// hit points
+	int hp = 100;			// hit points (hp = stamina * 10)
+	int mp = 0;				// magic points (mp = intellect * 10)
 	
 	// physical attributes
 	int strength = 0;		// physical attack power
 	int vitality = 0;		// hp regeneration
-	int dexterity = 0;		// acrobatics, agility, stealth
-	int speed = 0;			// attack speed, sprint
+	int agility = 0;		// acrobatics, agility, stealth
 	
 	// mental attributes
 	int intellect = 0;		// magic pool, magic regeneration, knowledge

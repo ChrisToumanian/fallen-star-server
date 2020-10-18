@@ -34,17 +34,40 @@ int Game::get_players_online()
     return 0;
 }
 
-void Game::add_player(int server_id)
+void Game::add_player(int server_id, std::string uid)
 {
-    Player* player = new Player();
-    player->server_id = server_id;
-    player->username = "player#" + std::to_string(server_id);
-    player->map = maps[starting_map - 1];
-    server->broadcast("[" + player->username + "] joined the game.");
-    log(player->username, "connected");
-    server->send_to(server_id, player->map->message);
-    server->send_to(server_id, "Players online: " + std::to_string(get_players_online()));
-    players.push_back(player);
+    if (!uid.empty()) // existing player
+    {
+        std::vector<std::string> settings = Reader::get_file_lines(players_filename);
+        for (int i = 0; i < settings.size(); i++)
+        {
+            std::vector<std::string> setting = Reader::split(settings[i], ",");
+            if (setting[0] == uid)
+            {
+                Player* player = new Player();
+                player->username = setting[1];
+                player->server_id = server_id;
+                player->map = maps[starting_map - 1];
+                server->broadcast("[" + player->username + "] joined the game.");
+                log(player->username, "connected");
+                server->send_to(server_id, player->map->message);
+                server->send_to(server_id, "Players online: " + std::to_string(get_players_online()));
+                players.push_back(player);
+            }
+        }
+    }
+    else // new player
+    {
+        Player* player = new Player();
+        player->username = "player#" + std::to_string(server_id);
+        player->server_id = server_id;
+        player->map = maps[starting_map - 1];
+        server->broadcast("[" + player->username + "] joined the game.");
+        log(player->username, "connected");
+        server->send_to(server_id, player->map->message);
+        server->send_to(server_id, "Players online: " + std::to_string(get_players_online()));
+        players.push_back(player);
+    }
 }
 
 void Game::remove_player(Player* player)
@@ -80,13 +103,28 @@ std::string Game::command(int server_id, std::string message)
     std::vector<std::string> cmd = Reader::split(message, " ");
 
     // Iterate through words
-    if (cmd[0] == "/help") // help
+    if (cmd[0] == "/uid")
+    {
+        if (cmd.size() > 1)
+        {
+            add_player(server_id, cmd[1]);
+        }
+        else
+        {
+            add_player(server_id, "");
+        }
+    }
+    else if (player == NULL)
+    {
+        return "";
+    }
+    else if (cmd[0] == "/help") // help
     {
         return "/disconnect, /quit, /exit\r\n/help\r\n/yell\r\n/name\r\n/say\r\n/teleport, /tp\r\n/emote, /me\r\n/whisper\r\n/coordinates, /coords";
     }
     else if (cmd[0] == "/connected")
     {
-        add_player(server_id);
+        add_player(server_id, "");
     }
     else if (cmd[0] == "/disconnected")
     {
@@ -153,4 +191,3 @@ std::string Game::command(int server_id, std::string message)
 
     return "";
 }
-

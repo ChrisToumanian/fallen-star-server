@@ -77,6 +77,8 @@ void Game::remove_player(Player* player)
     {
         if (p->server_id == player->server_id)
         {
+            // save settings
+            // erase
             players.erase(players.begin() + i);
         }
         i++;

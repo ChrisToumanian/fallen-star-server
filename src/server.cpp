@@ -69,6 +69,8 @@ void Server::loop()
 	addrlen = sizeof(address);
 	callback(NULL, "Waiting for connections...");
 
+    signal(SIGPIPE, signal_callback_handler);
+
 	while (running)
 	{
 		// Clear socket set
@@ -161,6 +163,7 @@ void Server::loop()
 						    send(sd, (response + "\r\n").c_str(), response.length() + 2, 0);
                         }
                     }
+                    
                 }
             }
         }
@@ -204,4 +207,8 @@ void Server::disconnect(int client_id)
             break;
         }
     }
+}
+
+void Server::signal_callback_handler(int signum)
+{
 }

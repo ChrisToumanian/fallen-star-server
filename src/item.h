@@ -13,47 +13,45 @@ public:
 	std::string classes = "";
 	std::string description = "";
 
-	int tier = 0;
-	int value = 10;
-	int durability = 40;
-	int duration = 0;
-	int range = 0;
-	int aoe = 0;
-	int dot = 0;
-
 	// appearance
-	int sprite = 0;
-	int animation = 0;
+	short sprite = 0;
+	short animation = 0;
 
+	// stats
+	short tier = 0;
+	short hp = 0;
+	short mp = 0;
+	short attack = 0;
+	short defense = 0;
+	short speed = 0;
+	short value = 0;
+	short durability = 0;
+	short duration = 0;
+	short range = 0;
+	short aoe = 0;
+	short dot = 0;
+	
 	// bonuses
-	int damage = 0;
-	int attack = 0;
-	int defense = 0;
-	int speed = 0;
-	int hp = 0;
-	int mp = 0;
-
-	// bonuses
-	int xp = 0;
-	int vitality = 0;
-	int strength = 0;
-	int agility = 0;
-	int intellect = 0;
-	int wisdom = 0;
-	int charm = 0;
-	int reputation = 0;
+	short xp = 0;
+	short vitality = 0;
+	short strength = 0;
+	short agility = 0;
+	short shortellect = 0;
+	short wisdom = 0;
+	short charm = 0;
+	short reputation = 0;
 
 	// afflictions
-	int poison = 0;
-	int burn = 0;
-	int paralyze = 0;
-	int electric = 0;
-	int freeze = 0;
-	int confuse = 0;
-	int infatuate = 0;
-	int leech = 0;
-	int sleep = 0;
-	int abv = 0;
+	short poison = 0;
+	short burn = 0;
+	short paralyze = 0;
+	short electric = 0;
+	short freeze = 0;
+	short confuse = 0;
+	short infatuate = 0;
+	short leech = 0;
+	short sleep = 0;
+	short abv = 0;
 	
 	void use();
 	void destroy();

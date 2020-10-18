@@ -38,19 +38,21 @@ public:
 	// Slot #11: ring
 
 	// stats
-	int level = 1;			// level
-	int hp = 100;			// hit points (hp = stamina * 10)
-	int mp = 0;				// magic points (mp = intellect * 10)
+	unsigned short level = 1;
+	short hp = 100;
+	short max_hp = 100;
+	short mp = 0;
+	short max_mp = 0;
 	
 	// physical attributes
-	int strength = 0;		// physical attack power
-	int vitality = 0;		// hp regeneration
-	int agility = 0;		// acrobatics, agility, stealth
-	
+	unsigned short strength = 0;
+	unsigned short vitality = 0;
+	unsigned short agility = 0;
+
 	// mental attributes
-	int intellect = 0;		// magic pool, magic regeneration, knowledge
-	int wisdom = 0;			// magic power, perception 
-	int charm = 0;			// persuasiveness, intimidation, bargaining, taming
+	unsigned short shortellect = 0;
+	unsigned short wisdom = 0;
+	unsigned short charm = 0;
 
 	void update();
 	void use_slot(int slot);

@@ -1,6 +1,7 @@
 #ifndef SERVER_H
 #define SERVER_H
 
+#include <iostream>
 #include <string> 
 #include <string.h>
 #include <vector>
@@ -13,6 +14,7 @@
 #include <sys/socket.h>  
 #include <netinet/in.h>  
 #include <sys/time.h> 
+#include <signal.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -43,6 +45,7 @@ public:
 	void broadcast(std::string message);
 	void send_to(int client_id, std::string message);
 	void disconnect(int client_id);
+    static void signal_callback_handler(int signum);
 };
 
 #endif

@@ -92,7 +92,6 @@ std::string Game::command(int server_id, std::string message)
     {
         server->broadcast("[" + player->username + "] logged out.");
         log(player->username, "disconnected");
-        remove_player(player);
     }
     else if (cmd[0] == "/disconnect" || cmd[0] == "/quit" || cmd[0] == "/exit") // disconnect
     {
